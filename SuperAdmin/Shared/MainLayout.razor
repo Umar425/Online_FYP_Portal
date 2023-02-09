@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using SuperAdmin.Authentication
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider authStateprovider
+@inject NavigationManager navManager
 
 <PageTitle>SuperAdmin</PageTitle>
 
@@ -8,8 +11,28 @@
     </div>
 
     <main>
-        <article class="content px-4">
+        <article class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
+                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>
+
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/Login"> Login </a>
+                </NotAuthorized>
+            </AuthorizeView>
+
             @Body
         </article>
     </main>
 </div>
+
+@code {
+    private async Task Logout()
+    {
+        var custAuthStateProvider = (CustomAuthenticationStateProvider)authStateprovider;
+        await custAuthStateProvider.UpdateAuthenticationState(null);
+        navManager.NavigateTo("/", true);
+
+    }
+}

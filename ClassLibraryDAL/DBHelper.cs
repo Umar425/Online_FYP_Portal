@@ -12,7 +12,7 @@ namespace ClassLibraryDAL
 	{
 		public static SqlConnection GetConnection()
 		{
-			SqlConnection con = new SqlConnection("Data Source=DESKTOP-2D4HAJ2;Initial Catalog=FYPPortal;Integrated Security=True");
+			SqlConnection con = new SqlConnection("Data Source=DESKTOP-JSIV0OT\\MSSQLSERVER01;Initial Catalog=FYPPortal;Integrated Security=True");
 			return con;
 		}
 	}
