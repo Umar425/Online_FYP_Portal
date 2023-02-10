@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibraryModel", "ClassL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperAdmin", "SuperAdmin\SuperAdmin.csproj", "{8ED4519C-8347-4A73-AA2B-577FCB890497}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacultyPanel", "FacultyPanel\FacultyPanel.csproj", "{53A42178-BA59-4C27-B4B0-7B77E82A8C04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8ED4519C-8347-4A73-AA2B-577FCB890497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ED4519C-8347-4A73-AA2B-577FCB890497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ED4519C-8347-4A73-AA2B-577FCB890497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A42178-BA59-4C27-B4B0-7B77E82A8C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A42178-BA59-4C27-B4B0-7B77E82A8C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A42178-BA59-4C27-B4B0-7B77E82A8C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A42178-BA59-4C27-B4B0-7B77E82A8C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

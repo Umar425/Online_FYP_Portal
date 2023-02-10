@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibraryModel\ClassLibraryModel.csproj" />
+    <ProjectReference Include="..\FacultyPanel\FacultyPanel.csproj" />
   </ItemGroup>
 
 </Project>

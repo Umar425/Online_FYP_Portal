@@ -1,0 +1,74 @@
+﻿@page "/faclproject"
+@using FaclDAL
+@using FaclProject.Data
+
+<h3>Project</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div class="form-group">
+                <label for="ProjectName">Project Name</label>
+                <input type="text" class="form-control" id="ProjectName" />
+            </div>
+            <div class="form-group">
+                <label for="ProjectDetails">Project Details</label>
+                <input type="text" class="form-control" id="ProjectDetails" />
+</div>
+<div class="form-group">
+<button type="button" class="btn btn-primary" @onclick="SaveProject">Save</button>
+</div>
+</form>
+</div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Project Details</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in projects)
+                {
+                    <tr>
+                        <td>@project.ProjectName</td>
+                        <td>@project.ProjectDetails</td>
+                        <td><a href="#" @onclick="() => DeleteProject(project.ProjectId)">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+private List<ProjectModel> projects;
+
+protected override async Task OnInitializedAsync()
+{
+    projects = await ProjectDataAccessLayer.GetProjects();
+}
+
+private async void SaveProject()
+{
+    var project = new ProjectModel
+    {
+        ProjectName = ProjectName.Value,
+        ProjectDetails = ProjectDetails.Value
+    };
+
+    await ProjectDataAccessLayer.SaveProject(project);
+
+    projects = await ProjectDataAccessLayer.GetProjects();
+}
+
+private async void DeleteProject(int projectId)
+{
+    await ProjectDataAccessLayer.DeleteProject(projectId);
+
+    projects = await ProjectDataAccessLayer.GetProjects();
+}

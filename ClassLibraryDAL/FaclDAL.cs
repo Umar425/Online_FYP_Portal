@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using ClassLibraryModel;
+using System.Data.Common;
+using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ClassLibraryDAL
 {
-    public class FaclDAL
-    {
+	public class FaclDAL
+	{
 		public static int SaveFacl(FaclModel fm)
 		{
 			SqlConnection con = DBHelper.GetConnection();
@@ -42,6 +45,7 @@ namespace ClassLibraryDAL
 			List<FaclModel> Facllist = new List<FaclModel>();
 			while (sdr.Read())
 			{
+
 				FaclModel facl = new FaclModel();
 				facl.FaclID = int.Parse(sdr["FaclID"].ToString());
 				facl.FaclFirstName = sdr["FaclFirstName"].ToString();
@@ -60,18 +64,5 @@ namespace ClassLibraryDAL
 			con.Close();
 			return Facllist;
 		}
-
-		public static int DeleteFacl(int FaclID)
-		{
-			SqlConnection con = DBHelper.GetConnection();
-			con.Open();
-			SqlCommand cmd = new SqlCommand("Sp_DeleteFacl", con);
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.Parameters.AddWithValue("@FaclID", FaclID);
-			int i = cmd.ExecuteNonQuery();
-			con.Close();
-			return i;
-		}
-
 	}
 }
