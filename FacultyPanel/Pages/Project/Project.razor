@@ -1,0 +1,40 @@
+﻿@page "/project"
+@using FacultyProject.Models
+@using FacultyPanel
+@using FacultyProject
+
+<h3>Project Management</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in projects)
+        {
+            <tr>
+                <td>@project.ProjectName</td>
+                <td>
+                    <a href="project/edit/@project.ProjectID">Edit</a> |
+                    <a href="project/delete/@project.ProjectID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="AddProject">Add Project</button>
+
+@code {
+private List<ProjectModel> projects;
+    protected override async Task OnInitializedAsync()
+    {
+        projects = await ProjectDAL.GetProjects();
+    }
+
+    private void AddProject()
+    {
+        Navigation.NavigateTo("/project/add");
+    }
+}
