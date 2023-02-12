@@ -1,24 +1,33 @@
 ﻿@page "/project"
-@using FacultyProject.Models
-@using FacultyPanel
-@using FacultyProject
+@using ClassLibraryDAL
+@using ClassLibraryModel
+@inject NavigationManager nm
+
 
 <h3>Project Management</h3>
 <table class="table">
     <thead>
         <tr>
+            <th> Project ID</th>
             <th>Project Name</th>
+            <th> Project Details</th>
+            <th> StartDate</th>
+            <th> EndDate</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var project in projects)
+        @foreach (var item in projects)
         {
             <tr>
-                <td>@project.ProjectName</td>
+                
+                <td>@item.ProjectID</td>
+                <td>@item.ProjectName</td>
+                <td>@item.ProjectDetails</td>
+                <td>@item.StartDate</td>
+                <td>@item.EndDate</td>
                 <td>
-                    <a href="project/edit/@project.ProjectID">Edit</a> |
-                    <a href="project/delete/@project.ProjectID">Delete</a>
+                  
                 </td>
             </tr>
         }
@@ -27,14 +36,19 @@
 <button class="btn btn-primary" @onclick="AddProject">Add Project</button>
 
 @code {
-private List<ProjectModel> projects;
-    protected override async Task OnInitializedAsync()
-    {
-        projects = await ProjectDAL.GetProjects();
-    }
+    private List<ProjectModel> projects { get; set; }
 
+    /* protected override async Task OnInitializedAsync()
+     {
+         projects = await ProjectDAL.GetProjects();
+     }  */
+
+    protected override void OnInitialized()
+    {
+        projects = ProjectDAL.GetProjects();
+    }
     private void AddProject()
     {
-        Navigation.NavigateTo("/project/add");
+        nm.NavigateTo("/project/add");
     }
 }

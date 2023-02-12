@@ -1,10 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FacultyProject.Models
+namespace ClassLibraryModel
 {
-    public class FaclModel
-    {  
+   public class ProjectModel
+    {
         public int ProjectID { get; set; }
         public string ProjectName { get; set; }
 

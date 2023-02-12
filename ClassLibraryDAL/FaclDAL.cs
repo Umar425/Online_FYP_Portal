@@ -14,7 +14,7 @@ namespace FacultyProject.DAL
             this.connectionString = connectionString;
         }
 
-        public int AddProject(ProjectModel facl)
+        public int AddProject(FaclModel facl)
         {
             using (var connection = new SqlConnection(connectionString))
             {

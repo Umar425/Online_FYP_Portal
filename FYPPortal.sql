@@ -288,4 +288,26 @@ DBCC CHECKIDENT ('FYPPortal.dbo.Qualification', RESEED, 0)
 DELETE FROM Faculty
 DBCC CHECKIDENT ('FYPPortal.dbo.Faculty', RESEED, 0)
 
+//ProjectDAL,Model,Razor
 
+CREATE TABLE Projects (
+    ProjectID INT PRIMARY KEY IDENTITY(1,1),
+    ProjectName VARCHAR(50) NOT NULL,
+    ProjectDetails VARCHAR(MAX) NOT NULL,
+    StartDate DATETIME NOT NULL,
+    EndDate DATETIME NOT NULL
+);
+INSERT INTO Projects (ProjectName, ProjectDetails, StartDate, EndDate)
+VALUES
+('Project 1', 'Details about project 1', '2022-01-01', '2022-12-31'),
+('Project 2', 'Details about project 2', '2022-06-01', '2022-06-30'),
+('Project 3', 'Details about project 3', '2022-07-01', '2022-12-31');
+
+select * from Projects
+
+
+create proc Sp_GetProjects
+as 
+begin
+select * from Projects
+end
