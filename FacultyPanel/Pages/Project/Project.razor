@@ -10,6 +10,7 @@
         <tr>
             <th> Project ID</th>
             <th>Project Name</th>
+            <th>Faculty Name</th>
             <th> Project Details</th>
             <th> StartDate</th>
             <th> EndDate</th>
@@ -23,6 +24,7 @@
                 
                 <td>@item.ProjectID</td>
                 <td>@item.ProjectName</td>
+                <td>@item.FacultyName</td>
                 <td>@item.ProjectDetails</td>
                 <td>@item.StartDate</td>
                 <td>@item.EndDate</td>
@@ -34,6 +36,11 @@
     </tbody>
 </table>
 <button class="btn btn-primary" @onclick="AddProject">Add Project</button>
+<button class="btn btn-primary" @onclick="DeleteProject">Delete Project</button>
+<button class="btn btn-primary" @onclick="EditProject">Edit Project</button>
+<button class="btn btn-primary" @onclick="DeleteProject">ProjectRequest</button>
+<button class="btn btn-primary" @onclick="EditProject">RequestResponse</button>
+
 
 @code {
     private List<ProjectModel> projects { get; set; }
@@ -50,5 +57,22 @@
     private void AddProject()
     {
         nm.NavigateTo("/project/add");
+    }
+    private void DeleteProject()
+    {
+        nm.NavigateTo("/project/del");
+    }
+    private void EditProject()
+    {
+        nm.NavigateTo("/project/edit");
+    }
+
+    private void ProjectRequest()
+    {
+        nm.NavigateTo("/project/del");
+    }
+    private void RequestResponse()
+    {
+        nm.NavigateTo("/project/edit");
     }
 }

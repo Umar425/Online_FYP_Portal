@@ -1,5 +1,4 @@
-﻿using FacultyProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -23,10 +22,12 @@ namespace ClassLibraryDAL
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                var cmd = new SqlCommand("INSERT INTO FacultyProject (ProjectName, ProjectDetails, StartDate, EndDate) VALUES (@ProjectName, @ProjectDetails, @StartDate, @EndDate)", connection);
+                var cmd = new SqlCommand("INSERT INTO FacultyProject (ProjectName,FacultyName, ProjectDetails, StartDate, EndDate) VALUES (@ProjectName, @ProjectDetails, @StartDate, @EndDate)", connection);
 
                 cmd.Parameters.AddWithValue("@ProjectName", facl.ProjectName);
-                cmd.Parameters.AddWithValue("@ProjectDetails", facl.ProjectDetails);
+                cmd.Parameters.AddWithValue("@FacultyName", facl.FacultyName);
+                cmd.Parameters.AddWithValue("@ProjectName", facl.ProjectName);
+				cmd.Parameters.AddWithValue("@ProjectDetails", facl.ProjectDetails);
                 cmd.Parameters.AddWithValue("@StartDate", facl.StartDate);
                 cmd.Parameters.AddWithValue("@EndDate", facl.EndDate);
 
@@ -46,6 +47,39 @@ namespace ClassLibraryDAL
                 return cmd.ExecuteNonQuery();
             }
         }
+        public int EditProject(int faclID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var cmd = new SqlCommand("Edit FROM FacultyProject WHERE ProjectID = @ProjectID", connection);
+                cmd.Parameters.AddWithValue("@ProjectID", faclID);
+
+                connection.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public int ProjectRequest(int faclID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var cmd = new SqlCommand("Response FROM FacultyProject WHERE ProjectID = @ProjectID", connection);
+                cmd.Parameters.AddWithValue("@ProjectID", faclID);
+
+                connection.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public int RequestResponse (int faclID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var cmd = new SqlCommand("RequestResponse FROM FacultyProject WHERE ProjectID = @ProjectID", connection);
+                cmd.Parameters.AddWithValue("@ProjectID", faclID);
+
+                connection.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
         public static List<ProjectModel> GetProjects()
         {
             SqlConnection con = DBHelper.GetConnection();
@@ -59,6 +93,7 @@ namespace ClassLibraryDAL
             {
                 ProjectModel projects = new ProjectModel();
                 projects.ProjectID = int.Parse(sdr["ProjectID"].ToString());
+                projects.FacultyName = sdr["FacultyName"].ToString();
                 projects.ProjectName = sdr["ProjectName"].ToString();
                 projects.ProjectDetails = sdr["ProjectDetails"].ToString();
                 projects.StartDate = Convert.ToDateTime(sdr["StartDate"].ToString());
@@ -69,6 +104,7 @@ namespace ClassLibraryDAL
             con.Close();
             return Projectlist;
         }
+
         /* public DataTable GetProjects()
          {
              using (var connection = new SqlConnection(connectionString))
