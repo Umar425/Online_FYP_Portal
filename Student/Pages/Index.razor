@@ -1,41 +1,9 @@
 ﻿@page "/"
-@using ClassLibraryDAL
-@using ClassLibraryModel
 
-<h3>Student Dashboard</h3>
+<PageTitle>Index</PageTitle>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Project ID</th>
-			<th>Project Name</th>
-			<th>Project Details</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in posModels)
-		{
-			<tr>
-				<td>@item.ProjID</td>
-				<td>@item.ProjectName</td>
-				<td>@item.ProjectDetails</td>
-				<td><NavLink href="student/register/@item.ProjID">Register</NavLink></td>
-			</tr>
-		}
-	</tbody>
-</table>
+<h1>Hello, world!</h1>
 
-@code {
-	private List<PosModel> posModels { get; set; } = new List<PosModel>();
+Welcome to your new app.
 
-	protected override void OnInitialized()
-	{
-		LoadProjects();
-	}
-
-	private void LoadProjects()
-	{
-		posModels = PosDAL.GetProj();
-	}
-}
+<SurveyPrompt Title="How is Blazor working for you?" />

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperAdmin", "SuperAdmin\Su
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacultyPanel", "FacultyPanel\FacultyPanel.csproj", "{53A42178-BA59-4C27-B4B0-7B77E82A8C04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student", "Student\Student.csproj", "{01746091-EC5C-4754-A459-B004FD871256}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student", "Student\Student.csproj", "{01746091-EC5C-4754-A459-B004FD871256}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
